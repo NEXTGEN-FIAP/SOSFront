@@ -2,6 +2,23 @@ import * as SQLite from 'expo-sqlite';
 
 export const db = SQLite.openDatabase('meuBancoDeDados.db');
 
+export const deletarTabelaEmpresa = () => {
+  db.transaction((tx: SQLite.SQLTransaction) => {
+    tx.executeSql(
+      `DROP TABLE IF EXISTS T_EMPRESA;`,
+      [],
+      (_, result: SQLite.SQLResultSet) => {
+        console.log('Tabela T_EMPRESA deletada com sucesso!');
+        return true; // Continuar a transação
+      },
+      (_, error: SQLite.SQLError) => {
+        console.error('Erro ao deletar tabela T_EMPRESA:', error);
+        return false; // Interromper a transação
+      }
+    );
+  });
+};
+
 // Função para criar as tabelas
 export const criarTabelas = () => {
   db.transaction((tx: SQLite.SQLTransaction) => {
@@ -48,12 +65,15 @@ export const criarTabelas = () => {
       }
     );
 
+
+
     // Criação da tabela T_EMPRESA
     tx.executeSql(
-      `CREATE TABLE IF NOT EXISTS T_EMPRESA (
+       `CREATE TABLE IF NOT EXISTS T_EMPRESA (
         idEmpresa INTEGER PRIMARY KEY,
         nomeEmpresa TEXT NOT NULL,
         emailEmpresa TEXT NOT NULL,
+        senhaEmpresa TEXT NOT NULL,
         nichos TEXT NOT NULL,
         idCampanha INTEGER,
         FOREIGN KEY (idCampanha) REFERENCES T_CAMPANHA(idCampanha)
@@ -87,5 +107,37 @@ export const buscarEmpresasCadastradas = (): Promise<any[]> => {
         }
       );
     });
+  });
+};
+
+export const atualizarEmpresa = (idEmpresa: number, novaInfoEmpresa: any) => {
+  return new Promise<void>((resolve, reject) => {
+    db.transaction(
+      (tx: SQLite.SQLTransaction) => {
+        tx.executeSql(
+          `UPDATE T_EMPRESA SET nomeEmpresa = ?, emailEmpresa = ?, nichos = ?, senhaEmpresa = ? WHERE idEmpresa = ?;`,
+          [
+            novaInfoEmpresa.nome,
+            novaInfoEmpresa.email,
+            novaInfoEmpresa.nichos, 
+            novaInfoEmpresa.senha,
+            idEmpresa,
+          ],
+          (_, result: SQLite.SQLResultSet) => {
+            console.log("Informações da empresa atualizadas com sucesso:", novaInfoEmpresa);
+            resolve();
+          },
+          (_, error: SQLite.SQLError) => {
+            console.error("Erro ao atualizar informações da empresa:", error);
+            reject(error);
+            return false;
+          }
+        );
+      },
+      (error) => {
+        console.error("Erro ao iniciar transação:", error);
+        reject(error);
+      }
+    );
   });
 };

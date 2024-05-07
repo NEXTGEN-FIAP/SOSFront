@@ -1,17 +1,17 @@
+// SignUp.tsx
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, Pressable } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { Link, useNavigation, router } from "expo-router";
 import * as SQLite from 'expo-sqlite';
-import { criarTabelas } from "../backend/database";
+import { criarTabelas, deletarTabelaEmpresa } from "../backend/database";
+import { salvarUsuarioLogado } from "../auth/utils";
 
 const db = SQLite.openDatabase('meuBancoDeDados.db');
 
 useEffect(() => {
   criarTabelas(); // Chama a função de criação de tabelas ao montar o componente
 }, []);
-
-
 
 interface SignUpFormData {
   nomeEmpresa: string;
@@ -24,10 +24,11 @@ const SignUp = () => {
   const { control, handleSubmit, formState: { errors } } = useForm<SignUpFormData>();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
- 
-  const onSubmit = async (data: SignUpFormData) => {
+  const onSubmit = async (data: any) => {
     try {
-      await inserirUsuarioNoBancoDeDados(data);
+      const id = generateRandomId(); // Gera um ID aleatório
+      await inserirUsuarioNoBancoDeDados({ ...data, id }); // Insere o ID na tabela
+      await salvarUsuarioLogado({ id, ...data }); // Salva o usuário logado no AsyncStorage
       setSuccessMessage("Empresa cadastrada com sucesso!");
       setTimeout(() => {
         setSuccessMessage(null);
@@ -38,12 +39,12 @@ const SignUp = () => {
     }
   };
 
-  const inserirUsuarioNoBancoDeDados = (data: SignUpFormData) => {
+  const inserirUsuarioNoBancoDeDados = (data: any) => {
     return new Promise<void>((resolve, reject) => {
       db.transaction((tx) => {
         tx.executeSql(
-          `INSERT INTO T_EMPRESA (nomeEmpresa, emailEmpresa, nichos) VALUES (?, ?, ?);`,
-          [data.nomeEmpresa, data.email, data.nicho],
+          `INSERT INTO T_EMPRESA (idEmpresa, nomeEmpresa, emailEmpresa, nichos, senhaEmpresa) VALUES (?, ?, ?, ?, ?);`,
+          [data.id, data.nomeEmpresa, data.email, data.nicho, data.senha],
           () => {
             console.log('Usuário cadastrado com sucesso!');
             resolve();
@@ -56,6 +57,10 @@ const SignUp = () => {
         );
       });
     });
+  };
+
+  const generateRandomId = () => {
+    return Math.floor(Math.random() * 1000000); // Gera um ID aleatório de 0 a 999999
   };
 
   return (
@@ -142,6 +147,8 @@ const SignUp = () => {
     </View>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   container: {
