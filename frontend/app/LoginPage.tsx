@@ -6,6 +6,7 @@ import { Link, router, useNavigation } from "expo-router";
 import * as SQLite from 'expo-sqlite';
 import { salvarUsuarioLogado } from "../auth/utils";
 
+
 const db = SQLite.openDatabase('meuBancoDeDados.db');
 
 interface LoginForm {
@@ -174,5 +175,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
 
 export default LoginPage;

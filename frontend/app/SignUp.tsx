@@ -32,7 +32,7 @@ const SignUp = () => {
       setSuccessMessage("Empresa cadastrada com sucesso!");
       setTimeout(() => {
         setSuccessMessage(null);
-        router.push('/Home');
+        router.push('/LoginPage');
       }, 2000);
     } catch (error) {
       console.error("Erro ao cadastrar empresa:", error);
@@ -204,6 +204,7 @@ const styles = StyleSheet.create({
   successMessage: {
     color: "green",
     marginTop: 10,
+    textAlign: "center",
   },
   loginText: {
     color: "#002fff",
