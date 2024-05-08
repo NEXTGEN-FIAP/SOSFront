@@ -1,19 +1,27 @@
 ✨ Tecnologias Utilizadas
+
 SocialRate foi construído com essas linguagens/frameworks/ferramentas:
+
 TypeScript: O TypeScript é um superconjunto tipado de JavaScript que compila para JavaScript simples.
 React Native: O React Native é uma biblioteca JavaScript que permite criar aplicativos nativos para Android, iOS e outros usando o React.
 Expo: Expo é um ecossistema de ferramentas que o ajudam a desenvolver, criar, atualizar, enviar e monitorizar aplicações nativas com React Native no Android, iOS e na Web.
 SQLite: O Sqlite é um motor de base de dados SQL pequeno, rápido, autónomo, de elevada fiabilidade e com todas as funcionalidades. É o motor de base de dados mais utilizado no mundo e é um software de código aberto. 
 AsyncStorage: O AsyncStorage é um sistema de armazenamento de valores chave não encriptado, assíncrono e persistente que é global para a aplicação. Deve ser utilizado em vez do LocalStorage. Foi utilizado principalmente para a autenticação do app.
+
 O que iremos adicionar nas próximas versões?
 Python: Python é uma linguagem de programação que permite trabalhar rapidamente e integrar sistemas de forma mais eficaz.
 Java: Java SE é uma plataforma de software que ajuda a reduzir custos, diminuir o tempo de desenvolvimento, impulsionar a inovação e melhorar os serviços de aplicações. 
 C#: O C# é uma linguagem de programação de alto nível para fins gerais que suporta vários paradigmas. 
+
 Como e para que essas linguagens/frameworks/ferramentas serão utilizadas?
 
+
 Aplicativo Mobile (React Native, TypeScript) → API para Java:
+
 O aplicativo mobile envia requisições HTTP para uma API Java para realizar operações de processamento e obter respostas.
+
 CSV → Modelo de Machine Learning (Python) → Modelo Treinado para Java:
+
 Os dados do CSV são processados por um modelo de machine learning em Python.
 O modelo treinado é exportado para um arquivo.
 O sistema Java carrega o arquivo do modelo treinado diretamente para utilizá-lo em análises ou previsões.
@@ -21,6 +29,7 @@ Modelo Treinado → Java (testa) → Banco de Dados (resultado)
 O sistema Java carrega o arquivo do modelo treinado diretamente para utilizá-lo em análises ou previsões.
 O sistema Java processa as solicitações e armazena os resultados no banco de dados.
 Além disso, fornece uma API adicional para acesso aos resultados para o sistema C#.
+
 Dados no banco → C# - feedback personalizado → API para Mobile:
 O sistema C# fornece feedback personalizado através de uma API para Mobile.
 Aplicativo Mobile (React Native, TypeScript)
@@ -29,40 +38,54 @@ O aplicativo mobile recebe o feedback através de requisições HTTP diretas ou 
 
 
 📝 Solução e para que serve?
+
 NICHO
 
 O que: Plataforma inteligente que analisa a adequação de influenciadores específicos para campanhas de marketing direcionadas, garantindo que a escolha do influenciador esteja alinhada com os objetivos e o público-alvo de cada campanha.
+
 Para quem: Empresas que desejam contratar influencers para impulsionar as vendas de seus produtos.
+
 Por que: As empresas buscam entender a percepção do público em relação aos influencers que estão considerando contratar. Isso é crucial para tomar decisões informadas sobre parcerias que possam impactar diretamente as vendas dos produtos. Uma compreensão clara da reputação do influencer ajuda a mitigar riscos e garantir que a parceria seja benéfica para a marca.
+
 Objetivo: Alavancar as vendas dos produtos por meio de parcerias estratégicas com influencers que tenham uma reputação positiva e uma base de seguidores engajada. A análise de sentimento ajuda a identificar influencers que possam ser mais eficazes na promoção dos produtos da empresa, maximizando assim o retorno sobre o investimento em marketing de influência.
 
 ⚙️ Instalação e funcionamento a nível local
+
 Passo 1:
+
 Descarregue ou clone este repositório utilizando a ligação abaixo:
 git clone https://github.com/Yagotaguchi/socialratefront.git
+
 Passo 2:
 Execute o seguinte comando no diretório raiz do repositório (De um cd frontend) descarregado para instalar as dependências:
 npm install
+
 Passo 3:
 Execute o seguinte comando para executar o servidor de desenvolvimento localmente:
 npx start expo
+
 Passo 4:
 
 Escaneie o QR e abra o aplicativo do Expo ou utilize um emulador para visualizar o aplicativo no seu celular.
 
 Acesso do diagrama visual da solução
+
 Link: 
 https://miro.com/welcomeonboard/eUY4RkRTUVFYTllvT3c4dTBvSEhaZkxCUU1VT21YU21zMlRYUFo5djdMMmJ6QUxpT2RkTEFDNFBFcUdkd0YySnwzMDc0NDU3MzU2NTg3MjAzMzY5fDI=?share_link_id=310817347936
+
 Observações importantes:
+
 Foi utilizado o aplicativo do Expo para visualizar o aplicativo em um aparelho mobile (Iphone 14)
+
 É importante salientar que deixamos alguns dados mais explícitos para fins didáticos, para que seja mais fácil a avaliação do nosso projeto.
+
 E entrega solicitou 5 telas do aplicativo, sendo assim, realizamos apenas 6 telas do aplicativo (A projeção é que ele tenha pelo meno 9), sendo elas:
-Tela de Cadastro (Responsável por inserir um usuário no nosso db)
-Tela de Login (Responsável por validar a entrada de um usuário no app)
-Tela Home do Aplicativo 
-Tela de Testes (Responsável por mostrar a veracidade das funções do nosso App)
-Tela de Edição de Cadastro (Responsável por editar o cadastro do usuário)
-Tela Layout (Responsável por facilitar a navegação do app)
+  Tela de Cadastro (Responsável por inserir um usuário no nosso db)
+  Tela de Login (Responsável por validar a entrada de um usuário no app)
+  Tela Home do Aplicativo 
+  Tela de Testes (Responsável por mostrar a veracidade das funções do nosso App)
+  Tela de Edição de Cadastro (Responsável por editar o cadastro do usuário)
+  Tela Layout (Responsável por facilitar a navegação do app)
 
 
 
