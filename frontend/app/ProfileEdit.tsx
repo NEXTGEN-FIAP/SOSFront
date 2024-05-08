@@ -70,6 +70,10 @@ const ProfileEdit = () => {
     setEmpresaInfo({ ...empresaInfo, [key]: value });
   };
 
+  const handleLogout = () => {
+    router.push('/');
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -113,6 +117,9 @@ const ProfileEdit = () => {
       </View>
       <TouchableOpacity style={styles.saveButton} onPress={handleUpdateInfo}>
         <Text style={styles.saveButtonText}>Salvar Alterações</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+        <Text style={styles.saveButtonText}>Deslogar</Text>
       </TouchableOpacity>
     </View>
   );
@@ -165,6 +172,13 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_smi,
     fontWeight: "600",
     textAlign: "center",
+  },
+  logoutButton: {
+    backgroundColor: "red",
+    paddingVertical: 15,
+    borderRadius: 6,
+    marginTop: 20,
+    alignItems: 'center',
   },
   successMessage: {
     fontSize: FontSize.size_xs,

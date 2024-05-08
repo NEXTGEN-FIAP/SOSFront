@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from "react-native";
 import { buscarEmpresasCadastradas } from "../backend/database";
-import { Link, router, useNavigation } from "expo-router";
+import { router, useNavigation } from "expo-router";
 
 const Testes = () => {
   const [empresas, setEmpresas] = useState<any[]>([]);
@@ -30,8 +30,8 @@ const Testes = () => {
     </View>
   );
 
-  const handleNavigateToSignUp = () => {
-    router.push('/SignUp');
+  const handleNavigateToLayout = () => {
+    router.navigate("/");
   };
 
   return (
@@ -42,7 +42,7 @@ const Testes = () => {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
-      <TouchableOpacity style={styles.button} onPress={handleNavigateToSignUp}>
+      <TouchableOpacity style={styles.button} onPress={handleNavigateToLayout}>
         <Text style={styles.buttonText}>Voltar</Text>
       </TouchableOpacity>
     </View>
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
+   
   },
   item: {
     backgroundColor: "#f9c2ff",
