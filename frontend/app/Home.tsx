@@ -1,32 +1,31 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import { Image } from "expo-image";
-import { MaterialIcons } from '@expo/vector-icons';
+import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
 import { router } from "expo-router";
 
 const Home = () => {
-  const handleCreateAnalysis = () => {
-    console.log('Nova análise');
+  const handleMonitorarArea = () => {
+    router.push('/Areas');;
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>SocialRate</Text>
+        <Text style={styles.headerText}>SOS</Text>
         <TouchableOpacity style={styles.profileIconContainer} onPress={() => router.push('/ProfileEdit')}>
-          <MaterialIcons name="account-circle" size={30} color={Color.colorDarkturquoise_100}  />
+        <Image source={require('../assets/circle-user.png')} style={{ width: 20, height: 20 }} />
         </TouchableOpacity>
       </View>
       <Text style={styles.introText}>
-        Encontre o influencer perfeito para a divulgação da sua marca.
+        Verifique e Monitore as Áreas de concentração de Krill na Antártida.
       </Text>
-        <View style={styles.imageContainer}>
-          <Image source={require('../assets/Pessoas.png')} style={styles.sticker} />
+      <View style={styles.imageContainer}>
+        <Image source={require('../assets/LOGO.png')} style={styles.sticker} />
       </View>
-      <TouchableOpacity style={styles.createAnalysisButton} onPress={handleCreateAnalysis}>
-        <Text style={styles.createAnalysisButtonText}>Criar nova análise +</Text>
+      <TouchableOpacity style={styles.monitorarButton} onPress={handleMonitorarArea}>
+        <Text style={styles.monitorarButtonText}>Monitorar Áreas</Text>
       </TouchableOpacity>
     </View>
   );
@@ -48,10 +47,12 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_xl,
     fontWeight: "600",
     fontFamily: FontFamily.interSemiBold,
-    color: Color.colorDarkturquoise_100,
+    color: "#004FC5",
   },
   profileIconContainer: {
     zIndex: 999,
+    marginRight: 10,
+    marginTop: 5,
   },
   introText: {
     fontSize: FontSize.size_xl,
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 40,
   },
-  createAnalysisButton: {
+  monitorarButton: {
     backgroundColor: "#007bff",
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -72,10 +73,10 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
 
-  createAnalysisButtonText: {
+  monitorarButtonText: {
     color: "#fff",
     fontWeight: "bold",
-    fontSize: FontSize.size_smi,
+    fontSize: FontSize.size_xl,
     textAlign: "center",
   },
   imageContainer: {
@@ -84,15 +85,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   sticker: {
-    width: 250,
-    height: 250,
+    width: 400,
+    height: 400,
     marginBottom: 20,
-    marginTop: 40,
-    
-  },
-  backgroundImage: {
-    width: 288,
-    height: 215,
   },
 });
 

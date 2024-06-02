@@ -18,7 +18,7 @@ export default function WelcomePage() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bem-vindo ao SocialRate!</Text>
+      <Text style={styles.title}>Bem-vindo ao Southern Ocean Sentinel!</Text>
       <Text style={styles.description}>Navegue com facilidade pelo nosso App</Text>
       <TouchableOpacity style={[styles.button, styles.signupButton]} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Criar uma Conta</Text>

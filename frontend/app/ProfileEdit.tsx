@@ -100,14 +100,6 @@ const ProfileEdit = () => {
         />
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.infoTitle}>Nicho:</Text>
-        <TextInput
-          style={styles.infoInput}
-          value={empresaInfo.nichos}
-          onChangeText={(text) => handleChangeText("nichos", text)}
-        />
-      </View>
-      <View style={styles.infoContainer}>
         <Text style={styles.infoTitle}>Senha:</Text>
         <TextInput
           style={styles.infoInput}

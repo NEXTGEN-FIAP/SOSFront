@@ -19,57 +19,31 @@ export const deletarTabelaEmpresa = () => {
   });
 };
 
-// Função para criar as tabelas
+
+export const deletarTabelaMonitoramento = () => {
+  db.transaction((tx: SQLite.SQLTransaction) => {
+    tx.executeSql(
+      `DROP TABLE IF EXISTS T_MONITORAMENTO;`,
+      [],
+      (_, result: SQLite.SQLResultSet) => {
+        console.log('Tabela T_MONITORAMENTO deletada com sucesso!');
+        return true; // Continuar a transação
+      },
+      (_, error: SQLite.SQLError) => {
+        console.error('Erro ao deletar tabela T_MONITORAMENTO:', error);
+        return false; // Interromper a transação
+      }
+    );
+  });
+};
+
+
+/// Função para criar as tabelas
 export const criarTabelas = () => {
   db.transaction((tx: SQLite.SQLTransaction) => {
-    // Criação da tabela T_INFLUENCER
-    tx.executeSql(
-      `CREATE TABLE IF NOT EXISTS T_INFLUENCER (
-        idInfluencer INTEGER PRIMARY KEY,
-        nomeInfluencer TEXT NOT NULL,
-        areaAtuacaoInfluencer TEXT NOT NULL,
-        faixaEtariaPublico TEXT NOT NULL,
-        generoPublico TEXT NOT NULL,
-        alcanceInfluencer INTEGER NOT NULL,
-        generoInfluencer TEXT NOT NULL
-      );`,
-      [],
-      (_, result: SQLite.SQLResultSet) => {
-        console.log('Tabela T_INFLUENCER criada com sucesso!');
-        return true; // Continuar a transação
-      },
-      (_, error: SQLite.SQLError) => {
-        console.error('Erro ao criar tabela T_INFLUENCER:', error);
-        return false; // Interromper a transação
-      }
-    );
-
-    // Criação da tabela T_CAMPANHA
-    tx.executeSql(
-      `CREATE TABLE IF NOT EXISTS T_CAMPANHA (
-        idCampanha INTEGER PRIMARY KEY,
-        publicoAlvoCampanha TEXT NOT NULL,
-        generoPublicoAlvoCampanha TEXT NOT NULL,
-        interessesDoPublico TEXT NOT NULL,
-        canalDaCampanha TEXT NOT NULL,
-        alcanceDaCampanha TEXT NOT NULL
-      );`,
-      [],
-      (_, result: SQLite.SQLResultSet) => {
-        console.log('Tabela T_CAMPANHA criada com sucesso!');
-        return true; // Continuar a transação
-      },
-      (_, error: SQLite.SQLError) => {
-        console.error('Erro ao criar tabela T_CAMPANHA:', error);
-        return false; // Interromper a transação
-      }
-    );
-
-
-
     // Criação da tabela T_EMPRESA
     tx.executeSql(
-       `CREATE TABLE IF NOT EXISTS T_EMPRESA (
+      `CREATE TABLE IF NOT EXISTS T_EMPRESA (
         idEmpresa INTEGER PRIMARY KEY,
         nomeEmpresa TEXT NOT NULL,
         emailEmpresa TEXT NOT NULL,
@@ -85,6 +59,26 @@ export const criarTabelas = () => {
       },
       (_, error: SQLite.SQLError) => {
         console.error('Erro ao criar tabela T_EMPRESA:', error);
+        return false; // Interromper a transação
+      }
+    );
+
+    // Criação da nova tabela
+    tx.executeSql(
+      `CREATE TABLE IF NOT EXISTS T_MONITORAMENTO (
+        id INTEGER PRIMARY KEY,
+        nome TEXT NOT NULL,
+        pais TEXT NOT NULL,
+        coordenadas TEXT NOT NULL,
+        localizacao TEXT NOT NULL
+      );`,
+      [],
+      (_, result: SQLite.SQLResultSet) => {
+        console.log('Tabela T_MONITORAMENTO criada com sucesso!');
+        return true; // Continuar a transação
+      },
+      (_, error: SQLite.SQLError) => {
+        console.error('Erro ao criar tabela T_MONITORAMENTO:', error);
         return false; // Interromper a transação
       }
     );

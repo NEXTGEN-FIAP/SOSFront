@@ -63,7 +63,7 @@ const LoginPage = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>SocialRate</Text>
+      <Text style={styles.headerText}>Southern Ocean Sentinel</Text>
       <View style={styles.formContainer}>
         <Text style={styles.title}>Login</Text>
         <Controller
